@@ -4455,9 +4455,7 @@ h1 em{
       class="action"
       id="surpriseBtn">
 
-      <span class="confetti-hint">
-        🎉✨🎊
-      </span>
+    
 
       Open your surprise!!🎁
 
@@ -4698,7 +4696,6 @@ h1 em{
           Happy
           <em>Birthday</em>,
           Babaa!🐣
-
         </div>
 
 
@@ -4886,11 +4883,10 @@ h1 em{
 <!-- =====================================================
      SONG
 ====================================================== -->
-
 <audio
   id="music"
-  preload="auto">
-
+  preload="auto"
+  playsinline>
   <source
   src="Khushi_Ko_Barbaad_Hone_Mein_Movie_Saiyaara.mp3?v=2"
   type="audio/mpeg"
@@ -4973,17 +4969,16 @@ let musicStarted = false;
 
 let trickleInterval = null;
 
-
+////
 /* =========================================================
    MUSIC
 ========================================================= */
 
 music.volume = 0.72;
 
-
 function startMusic(){
 
-  if(!music.paused){
+  if(musicStarted){
     return;
   }
 
@@ -4998,9 +4993,13 @@ function startMusic(){
     })
     .catch(()=>{
 
+      musicStarted = false;
+
     });
 
 }
+
+
 /* =========================================================
    BOW POINTER DOWN
 ========================================================= */
@@ -5009,12 +5008,9 @@ pullArea.addEventListener(
   "pointerdown",
   e=>{
 
-    /* START MUSIC FIRST */
-
     startMusic();
 
-
-    /* THEN START BOW */
+    /* START BOW */
 
     startY =
       e.clientY;
@@ -5080,7 +5076,7 @@ music.addEventListener(
   }
 );
 
-
+//////
 /* =========================================================
    OPEN CARD
 ========================================================= */
@@ -5325,10 +5321,14 @@ function addRipple(
 /* =========================================================
    SURPRISE BUTTON
 ========================================================= */
-
 surpriseBtn.addEventListener(
   "click",
   function(e){
+
+    /* START MUSIC */
+
+    startMusic();
+
 
     addRipple(
       this,
