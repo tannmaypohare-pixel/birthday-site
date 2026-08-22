@@ -2962,15 +2962,66 @@ h1 em{
 
   .card{
 
-    width:100vw;
+  width:100%;
+  min-height:100svh;
 
-    min-height:100svh;
+  height:auto;
 
-    height:100svh;
+  border-radius:0;
 
-    border-radius:0;
-  }
+  overflow:hidden;
+}
 
+/* MOBILE CELEBRATION SCROLL FIX */
+
+.celebration{
+
+  height:100svh;
+
+  min-height:100svh;
+
+  overflow-y:auto;
+
+  overflow-x:hidden;
+
+  -webkit-overflow-scrolling:touch;
+
+  overscroll-behavior-y:contain;
+
+  transform:none;
+}
+
+.celebration .content{
+
+  width:100%;
+
+  min-height:100%;
+
+  padding:
+    20px
+    18px
+    120px;
+}
+
+.cake-wrap{
+
+  width:220px;
+
+  max-width:90vw;
+
+  margin:
+    20px auto
+    30px;
+
+  flex-shrink:0;
+}
+
+.photo-frame{
+
+  max-width:86vw;
+
+  flex-shrink:0;
+}
   .card::after{
 
     inset:6px;
@@ -3201,11 +3252,6 @@ h1 em{
   h1{
     font-size:40px;
   }
-
-  .cake-wrap{
-    transform:scale(.78);
-  }
-
   .message{
 
     font-size:16px;
@@ -3263,7 +3309,39 @@ h1 em{
   }
 
 }
+/* =========================================================
+   MOBILE CANDLE FIX
+========================================================= */
 
+@media (max-width: 480px){
+
+  .cake{
+    width:100%;
+    max-width:240px;
+    margin:0 auto;
+  }
+
+  .top{
+    width:145px;
+  }
+
+  .bottom{
+    width:195px;
+  }
+
+  .candle:nth-child(2){
+    left:35px;
+  }
+
+  .candle:nth-child(3){
+    left:calc(50% - 4.5px);
+  }
+
+  .candle:nth-child(4){
+    right:35px;
+  }
+
+}
 </style>
 
 </head>
@@ -4903,23 +4981,11 @@ let trickleInterval = null;
 music.volume = 0.72;
 
 
-function updateMusicButton(){
-
-  if(music.paused){
-
-    musicBtn.classList.remove("playing");
-
-  }
-  else{
-
-    musicBtn.classList.add("playing");
-
-  }
-
-}
-
-
 function startMusic(){
+
+  if(!music.paused){
+    return;
+  }
 
   music
     .play()
@@ -4935,24 +5001,35 @@ function startMusic(){
     });
 
 }
-
-
 /* =========================================================
-   FIRST USER INTERACTION
+   BOW POINTER DOWN
 ========================================================= */
 
-document.addEventListener(
+pullArea.addEventListener(
   "pointerdown",
-  ()=>{
+  e=>{
 
-    if(!musicStarted){
+    /* START MUSIC FIRST */
 
-      startMusic();
+    startMusic();
 
-    }
 
-  },
-  { once:false }
+    /* THEN START BOW */
+
+    startY =
+      e.clientY;
+
+    string.classList.add("pulling");
+
+    dot.classList.add("pulling");
+
+    eyePair.classList.add("pulling");
+
+    pullArea.setPointerCapture(
+      e.pointerId
+    );
+
+  }
 );
 
 
@@ -5110,11 +5187,11 @@ pullArea.addEventListener(
       e.pointerId
     );
 
-    if(!musicStarted){
+   
 
       startMusic();
 
-    }
+  
 
   }
 );
