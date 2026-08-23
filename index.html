@@ -1536,6 +1536,8 @@ h1 em{
 
   background:var(--gold);
 }
+
+
 /* =========================================================
    SURPRISE BUTTON
 ========================================================= */
@@ -2962,66 +2964,67 @@ h1 em{
 
   .card{
 
-  width:100%;
-  min-height:100svh;
+    width:100%;
 
-  height:auto;
+    min-height:100svh;
 
-  border-radius:0;
+    height:100svh;
 
-  overflow:hidden;
-}
+    border-radius:0;
 
-/* MOBILE CELEBRATION SCROLL FIX */
+    overflow:hidden;
+  }
 
-.celebration{
 
-  height:100svh;
+  /* MOBILE CELEBRATION SCROLL FIX */
 
-  min-height:100svh;
+  .celebration{
 
-  overflow-y:auto;
+    position:absolute;
 
-  overflow-x:hidden;
+    inset:0;
 
-  -webkit-overflow-scrolling:touch;
+    width:100%;
 
-  overscroll-behavior-y:contain;
+    height:100%;
 
-  transform:none;
-}
+    min-height:100%;
 
-.celebration .content{
+    overflow-y:auto;
 
-  width:100%;
+    overflow-x:hidden;
 
-  min-height:100%;
+    -webkit-overflow-scrolling:touch;
 
-  padding:
-    20px
-    18px
-    120px;
-}
+    overscroll-behavior-y:contain;
 
-.cake-wrap{
+    scrollbar-width:none;
 
-  width:220px;
+    transform:none;
 
-  max-width:90vw;
+    padding:
+      28px 18px 60px;
+  }
 
-  margin:
-    20px auto
-    30px;
+  .celebration::-webkit-scrollbar{
+    display:none;
+  }
 
-  flex-shrink:0;
-}
+  .celebration .content{
 
-.photo-frame{
+    width:100%;
 
-  max-width:86vw;
+    max-width:720px;
 
-  flex-shrink:0;
-}
+    min-height:auto;
+
+    margin:0 auto;
+
+    padding:
+      10px 0 100px;
+  }
+
+
   .card::after{
 
     inset:6px;
@@ -3070,21 +3073,6 @@ h1 em{
     line-height:1.5;
   }
 
-  .celebration{
-
-    padding:
-      28px 18px 30px;
-  }
-
-  .celebration .content{
-
-    width:100%;
-
-    padding-top:10px;
-
-    padding-bottom:110px;
-  }
-
   h1{
 
     font-size:
@@ -3109,6 +3097,12 @@ h1 em{
 
   .cake-wrap{
 
+    width:220px;
+
+    max-width:90vw;
+
+    flex-shrink:0;
+
     transform:scale(.88);
 
     margin-top:8px;
@@ -3131,23 +3125,63 @@ h1 em{
 
   .message-wrap{
 
+    width:100%;
+
+    max-width:680px;
+
+    height:auto;
+
+    min-height:0;
+
     margin-top:32px;
 
     padding:8px;
 
     border-radius:26px;
+
+    overflow:visible;
   }
 
   .message{
 
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+
+    max-height:none;
+
     padding:
-      27px 18px 29px;
+      30px 18px 32px;
 
     border-radius:20px;
 
     font-size:17px;
 
-    line-height:1.58;
+    line-height:1.65;
+
+    overflow:visible;
+
+    word-break:normal;
+
+    overflow-wrap:break-word;
+  }
+
+  .message p{
+
+    height:auto;
+
+    max-height:none;
+
+    overflow:visible;
+
+    margin:
+      0 0 14px;
+  }
+
+  .message p:last-child{
+    margin-bottom:0;
   }
 
   .note-title{
@@ -3174,6 +3208,8 @@ h1 em{
 
   .gallery{
 
+    width:100%;
+
     flex-direction:column;
 
     align-items:center;
@@ -3187,6 +3223,10 @@ h1 em{
 
     width:
       min(300px,82vw);
+
+    max-width:86vw;
+
+    flex-shrink:0;
 
     padding:
       10px 10px 32px;
@@ -3217,7 +3257,7 @@ h1 em{
   .final-note{
 
     padding:
-      0 10px 30px;
+      0 10px 50px;
 
     font-size:25px;
   }
@@ -3252,6 +3292,7 @@ h1 em{
   h1{
     font-size:40px;
   }
+
   .message{
 
     font-size:16px;
@@ -3342,6 +3383,180 @@ h1 em{
   }
 
 }
+
+
+/* =========================================================
+   FINAL MOBILE OVERFLOW PROTECTION
+   Keeps all existing content unchanged.
+========================================================= */
+
+@media (max-width:650px){
+
+  html,
+  body{
+    width:100%;
+
+    min-height:100%;
+
+    overflow-x:hidden;
+
+    overflow-y:auto;
+  }
+
+  .card{
+
+    width:100%;
+
+    height:100svh;
+
+    min-height:100svh;
+
+    overflow:hidden;
+  }
+
+  .celebration{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    max-height:100%;
+
+    overflow-x:hidden;
+
+    overflow-y:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+    overscroll-behavior-y:contain;
+  }
+
+  .celebration .content{
+
+    width:100%;
+
+    max-width:720px;
+
+    min-height:0;
+
+    height:auto;
+
+    margin:0 auto;
+
+    padding:
+      10px 0 120px;
+  }
+
+  .message-wrap{
+
+    width:100%;
+
+    max-width:680px;
+
+    height:auto;
+
+    min-height:0;
+
+    max-height:none;
+
+    overflow:visible;
+
+    margin-left:auto;
+
+    margin-right:auto;
+  }
+
+  .message{
+
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+
+    max-height:none;
+
+    overflow:visible;
+
+    white-space:normal;
+
+    word-wrap:break-word;
+
+    overflow-wrap:anywhere;
+
+    padding:
+      30px 18px 32px;
+
+    line-height:1.65;
+  }
+
+  .message p{
+
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+
+    max-height:none;
+
+    overflow:visible;
+
+    white-space:normal;
+
+    word-wrap:break-word;
+
+    overflow-wrap:anywhere;
+  }
+
+  .gallery{
+
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+  }
+
+  .final-note{
+
+    width:100%;
+
+    height:auto;
+
+    min-height:0;
+  }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONE MESSAGE SAFETY
+========================================================= */
+
+@media (max-width:380px){
+
+  .message{
+
+    padding:
+      27px 15px 30px;
+
+    font-size:16px;
+
+    line-height:1.58;
+  }
+
+  .note-title{
+
+    font-size:26px;
+  }
+
+}
+
 </style>
 
 </head>
@@ -4033,7 +4248,8 @@ h1 em{
     </svg>
 
   </div>
-    <div class="heart-stage">
+
+  <div class="heart-stage">
 
     <div class="heart-glow"></div>
 
@@ -4455,8 +4671,6 @@ h1 em{
       class="action"
       id="surpriseBtn">
 
-    
-
       Open your surprise!!🎁
 
     </button>
@@ -4696,6 +4910,7 @@ h1 em{
           Happy
           <em>Birthday</em>,
           Babaa!🐣
+
         </div>
 
 
@@ -4883,14 +5098,16 @@ h1 em{
 <!-- =====================================================
      SONG
 ====================================================== -->
+
 <audio
   id="music"
   preload="auto"
   playsinline>
+
   <source
-  src="Khushi_Ko_Barbaad_Hone_Mein_Movie_Saiyaara.mp3?v=2"
-  type="audio/mpeg"
->
+    src="Khushi_Ko_Barbaad_Hone_Mein_Movie_Saiyaara.mp3?v=2"
+    type="audio/mpeg"
+  >
 
 </audio>
 
@@ -4969,7 +5186,7 @@ let musicStarted = false;
 
 let trickleInterval = null;
 
-////
+
 /* =========================================================
    MUSIC
 ========================================================= */
@@ -5076,7 +5293,7 @@ music.addEventListener(
   }
 );
 
-//////
+
 /* =========================================================
    OPEN CARD
 ========================================================= */
@@ -5183,11 +5400,7 @@ pullArea.addEventListener(
       e.pointerId
     );
 
-   
-
-      startMusic();
-
-  
+    startMusic();
 
   }
 );
@@ -5321,6 +5534,7 @@ function addRipple(
 /* =========================================================
    SURPRISE BUTTON
 ========================================================= */
+
 surpriseBtn.addEventListener(
   "click",
   function(e){
@@ -5603,6 +5817,33 @@ music.addEventListener(
   "ended",
   updateMusicButton
 );
+
+
+/* =========================================================
+   MUSIC BUTTON UPDATE
+========================================================= */
+
+function updateMusicButton(){
+
+  if(!musicBtn){
+    return;
+  }
+
+  if(!music.paused){
+
+    musicBtn.classList.add(
+      "playing"
+    );
+
+  }else{
+
+    musicBtn.classList.remove(
+      "playing"
+    );
+
+  }
+
+}
 
 
 /* =========================================================
